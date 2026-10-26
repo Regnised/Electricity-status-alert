@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Сервер cabinet.cherkasyoblenergo.com не віддає проміжний сертифікат Sectigo,
+  тому Android не може перевірити ланцюжок. Додаємо цей проміжний сертифікат
+  як довірений лише для доменів обленерго.
+-->
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">cherkasyoblenergo.com</domain>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="@raw/sectigo_dv_r36" />
+        </trust-anchors>
+    </domain-config>
+</network-security-config>

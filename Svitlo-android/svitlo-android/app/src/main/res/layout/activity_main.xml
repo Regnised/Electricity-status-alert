@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Світло"
+            android:textColor="@color/fg"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:text="Голосом і сиреною оголошує відключення та включення електроенергії — за графіком черги і за фактичним зникненням живлення."
+            android:textColor="@color/muted"
+            android:textSize="14sp" />
+
+        <!-- Status board -->
+        <LinearLayout
+            android:id="@+id/board"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/bulb"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:gravity="center"
+                android:text="⚡"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Світло є"
+                    android:textColor="@color/fg"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/muted"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/plug"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/muted"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/toggle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="14dp"
+            android:text="Увімкнути сповіщення"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/warnings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/off"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/fix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Виправити"
+            android:textAllCaps="false"
+            android:visibility="gone" />
+
+        <!-- Oblenergo site -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/panel"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Графік із сайту Черкасиобленерго"
+                android:textColor="@color/fg"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Додаток щогодини перевіряє cherkasyoblenergo.com/off за вашим особовим рахунком і сам оновлює години відключень. Якщо графік на сьогодні зміниться — оголосить голосом."
+                android:textColor="@color/muted"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Назву голос прочитає в кінці оголошення: «…Місце: Дім». Друге місце — за бажанням, наприклад квартира батьків."
+                android:textColor="@color/muted"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Місце 1"
+                android:textColor="@color/fg"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/label1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/field"
+                android:hint="Назва, наприклад Дім"
+                android:inputType="textCapSentences"
+                android:maxLength="40"
+                android:padding="12dp"
+                android:textColor="@color/fg"
+                android:textColorHint="@color/muted"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/account1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/field"
+                android:fontFamily="monospace"
+                android:hint="Особовий рахунок, наприклад 71020000000"
+                android:inputType="number"
+                android:maxLength="20"
+                android:padding="12dp"
+                android:textColor="@color/fg"
+                android:textColorHint="@color/muted"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Місце 2"
+                android:textColor="@color/fg"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/label2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/field"
+                android:hint="Назва, наприклад Батьки"
+                android:inputType="textCapSentences"
+                android:maxLength="40"
+                android:padding="12dp"
+                android:textColor="@color/fg"
+                android:textColorHint="@color/muted"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/account2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/field"
+                android:fontFamily="monospace"
+                android:hint="Особовий рахунок (необов'язково)"
+                android:inputType="number"
+                android:maxLength="20"
+                android:padding="12dp"
+                android:textColor="@color/fg"
+                android:textColorHint="@color/muted"
+                android:textSize="17sp" />
+
+            <Switch
+                android:id="@+id/autoSite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Брати графік із сайту автоматично"
+                android:textColor="@color/fg"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/siteInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="monospace"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/fg"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/fetchNow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Оновити зараз"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/openSite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Відкрити сайт"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Schedule -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/panel"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ручний графік (запасний)"
+                android:textColor="@color/fg"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Використовується, коли графіка з сайту немає. Кожен інтервал з нового рядка, у форматі 10:00-11:00. Діє щодня. Інтервал через північ (22:00-01:00) теж працює."
+                android:textColor="@color/muted"
+                android:textSize="13sp" />
+
+            <EditText
+                android:id="@+id/intervals"
+                android:hint="10:00-11:00&#10;14:00-16:00"
+                android:textColorHint="@color/muted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/field"
+                android:fontFamily="monospace"
+                android:gravity="top"
+                android:inputType="textMultiLine|textNoSuggestions"
+                android:minLines="3"
+                android:padding="12dp"
+                android:textColor="@color/fg"
+                android:textSize="17sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Попереджати за, хв"
+                    android:textColor="@color/fg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/warnMin"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/field"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textColor="@color/fg" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Повторів оголошення"
+                    android:textColor="@color/fg"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/repeats"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/field"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:padding="8dp"
+                    android:textColor="@color/fg" />
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/useSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Оголошувати за графіком"
+                android:textColor="@color/fg"
+                android:textSize="15sp" />
+
+            <Switch
+                android:id="@+id/warnOn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Попереджати і про включення"
+                android:textColor="@color/fg"
+                android:textSize="15sp" />
+
+            <Switch
+                android:id="@+id/siren"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Сирена перед оголошенням про відключення"
+                android:textColor="@color/fg"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Зберегти графік"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Sensor -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/panel"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Датчик живлення"
+                android:textColor="@color/fg"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Поставте телефон на зарядку від розетки (не від павербанку чи зарядної станції). Коли зарядка зникне — це фактичне відключення, коли з'явиться — світло дали."
+                android:textColor="@color/muted"
+                android:textSize="13sp" />
+
+            <Switch
+                android:id="@+id/useSensor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Оголошувати за датчиком"
+                android:textColor="@color/fg"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!-- Test -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/panel"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Перевірка звуку"
+                android:textColor="@color/fg"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/testOff"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Відключення"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/testOn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Включення"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/stop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Стоп"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ttsNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/muted"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/ttsSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Налаштування синтезу мовлення"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Log -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/panel"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Журнал"
+                android:textColor="@color/fg"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/fg"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
